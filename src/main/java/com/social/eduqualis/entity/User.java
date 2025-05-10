@@ -19,6 +19,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String firebaseUid;
+
     @Column(name = "username")
     private String username;
 
@@ -28,7 +30,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "photoPath")
+    @Column(name = "photo_path")
     private String photoPath;
 
     public User(UserDTO userDTO) {
