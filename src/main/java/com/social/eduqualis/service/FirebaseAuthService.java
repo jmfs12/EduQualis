@@ -2,6 +2,8 @@ package com.social.eduqualis.service;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -14,8 +16,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class FirebaseAuthService {
+
     public static String signInWithEmailAndPassword(String email, String password) throws IOException {
-        URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC0ProIKcrRLR0fwqLXROswreJhLdZKYbY");
+        Dotenv dotenv = Dotenv.load();
+        String apiKey = dotenv.get("API_KEY");
+        URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
