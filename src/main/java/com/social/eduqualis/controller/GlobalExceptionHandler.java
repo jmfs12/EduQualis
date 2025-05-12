@@ -2,6 +2,7 @@ package com.social.eduqualis.controller;
 
 import com.social.eduqualis.exceptions.UserAlreadyExistsException;
 import com.social.eduqualis.exceptions.UserNotFoundException;
+import com.social.eduqualis.repository.FailToSaveVideoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,6 +19,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<String> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleFailToSaveVideoException(FailToSaveVideoException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 
 }

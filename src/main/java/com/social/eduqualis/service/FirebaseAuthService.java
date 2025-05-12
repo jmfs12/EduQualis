@@ -20,7 +20,7 @@ public class FirebaseAuthService {
     public static String signInWithEmailAndPassword(String email, String password) throws IOException {
         Dotenv dotenv = Dotenv.load();
         String apiKey = dotenv.get("API_KEY");
-        URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=");
+        URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + apiKey);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
