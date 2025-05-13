@@ -24,7 +24,7 @@ import java.util.List;
 
 @Service
 public class UserService {
-    UserRepository UserRepository;
+    private final UserRepository UserRepository;
 
     @Value("${eduqualis.photo.dir}")
     private String PHOTO_DIR;
