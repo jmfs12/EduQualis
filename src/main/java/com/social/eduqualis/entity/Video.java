@@ -26,6 +26,11 @@ public class Video {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "trilha_id")
+    private Trilha trilha;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "category")
     private VideoCategory category;
 

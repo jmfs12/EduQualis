@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -16,6 +18,7 @@ public class UserDTO {
     private String password;
     private String email;
     private String photoPath;
+    private List<VideoDTO> videos;
 
     public UserDTO (String username, String password, String email) {
         this.username = username;
@@ -30,6 +33,13 @@ public class UserDTO {
 
     public UserDTO(String username) {
         this.username = username;
+    }
+
+    public UserDTO(User user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.email = user.getEmail();
+        this.photoPath = user.getPhotoPath();
     }
 
 

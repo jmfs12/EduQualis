@@ -1,4 +1,4 @@
-package com.social.eduqualis.repository;
+package com.social.eduqualis.exceptions;
 
 public class FailToSaveVideoException extends RuntimeException {
     public FailToSaveVideoException(String message) {

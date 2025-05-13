@@ -3,8 +3,8 @@ package com.social.eduqualis.service;
 import com.social.eduqualis.dtos.VideoDTO;
 import com.social.eduqualis.entity.User;
 import com.social.eduqualis.entity.Video;
-import com.social.eduqualis.exceptions.UserNotFoundException;
-import com.social.eduqualis.repository.FailToSaveVideoException;
+import com.social.eduqualis.exceptions.ObjectNotFoundException;
+import com.social.eduqualis.exceptions.FailToSaveVideoException;
 import com.social.eduqualis.repository.UserRepository;
 import com.social.eduqualis.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class VideoService {
     public void addVideo(VideoDTO videoDTO, MultipartFile file)  {
         User user = userRepository.findByUsername(videoDTO.getUser().getUsername());
         if (user == null) {
-            throw new UserNotFoundException("User not found");
+            throw new ObjectNotFoundException("User not found");
         }
 
         try {
@@ -63,19 +63,19 @@ public class VideoService {
         try {
             Video video = videoRepository.findByVideoName(videoName);
             if (video == null) {
-                throw new UserNotFoundException("Video not found");
+                throw new ObjectNotFoundException("Video not found");
             }
 
             Path path = Path.of(video.getVideoPath());
             Resource resource = new UrlResource(path.toUri());
 
             if (!resource.exists()) {
-                throw new UserNotFoundException("Video not found");
+                throw new ObjectNotFoundException("Video not found");
             }
 
             return resource;
         } catch (IOException e) {
-            throw new UserNotFoundException("Error retrieving video file");
+            throw new ObjectNotFoundException("Error retrieving video file");
         }
     }
 
